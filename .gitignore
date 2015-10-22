@@ -4,6 +4,11 @@
 .mtj.tmp/
 .gradle/
 
+# eclipsefiles
+.project
+.classpath
+.settings/
+
 # Package Files #
 *.jar
 *.war
