@@ -11,10 +11,19 @@
 // Apply the java plugin to add support for Java
 
 // In this section you declare where to find the dependencies of your project
+
+allprojects {
+	apply plugin: 'eclipse'
+	buildscript {
+	    repositories {
+	    	jcenter()
+	    }
+	}	
+}
+
 subprojects {
 	apply plugin: 'java'
 	apply plugin: 'maven'
-	apply plugin: 'eclipse'
 
 	repositories {
 	    // Use 'jcenter' for resolving your dependencies.
