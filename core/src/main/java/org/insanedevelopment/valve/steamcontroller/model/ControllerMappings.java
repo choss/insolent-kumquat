@@ -14,7 +14,6 @@ public class ControllerMappings {
 	
 	private List<ControllerGroups> groups;
 	
-	private List<ControllerPreset> preset; // if no preset exists the root will contain all attributes of preset.. WTF ?!?!?
-	
+	private List<ControllerPreset> presets; // if no preset exists the root will contain all attributes of preset.. WTF ?!?!?
 	
 }
