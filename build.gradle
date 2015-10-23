@@ -41,6 +41,13 @@ subprojects {
 		options.fork = true;
 		compileJava.options.forkOptions.executable = java8_executable
 	}
+	
+	eclipse {
+		classpath {
+			downloadSources = true
+			downloadJavadoc = true
+		}
+	}
 	sourceCompatibility = '1.8'
 	targetCompatibility = '1.8'
 }

@@ -1,0 +1,175 @@
+"controller_mappings"
+{
+	"version"		"2"
+	"title"		"Adventure Games"
+	"description"		"This Template is my evolving template for Visionaire engine games (e.g Deponia)"
+	"creator"		"76561198027921071"
+	"group"
+	{
+		"id"		"0"
+		"mode"		"four_buttons"
+		"bindings"
+		{
+			"button_A"		"mouse_button LEFT"
+			"button_B"		"mouse_wheel SCROLL_UP, Hide Inventory"
+			"button_X"		"mouse_button RIGHT"
+			"button_Y"		"mouse_wheel SCROLL_DOWN, Show Inventory"
+		}
+		"settings"
+		{
+			"hold_repeat_inverval"		"99"
+			"button_size"		"17984"
+			"button_dist"		"19984"
+		}
+	}
+	"group"
+	{
+		"id"		"1"
+		"mode"		"dpad"
+		"bindings"
+		{
+			"dpad_north"		"key_press 1, Weapon 1"
+			"dpad_south"		"key_press 3, Weapon 3"
+			"dpad_east"		"key_press 2, Weapon 2"
+			"dpad_west"		"key_press 4, Weapon 4"
+		}
+		"settings"
+		{
+			"hold_repeat_inverval"		"99"
+			"deadzone"		"5000"
+			"edge_binding_radius"		"24996"
+			"analog_emulation_period"		"29"
+		}
+	}
+	"group"
+	{
+		"id"		"2"
+		"mode"		"absolute_mouse"
+		"bindings"
+		{
+			"click"		"mouse_button RIGHT, Inspect"
+		}
+		"settings"
+		{
+			"sensitivity"		"268"
+			"rotation"		"15"
+			"doubetap_max_duration"		"320"
+		}
+	}
+	"group"
+	{
+		"id"		"3"
+		"mode"		"dpad"
+		"bindings"
+		{
+			"dpad_north"		"key_press W, Move Forward"
+			"dpad_south"		"key_press S, Move Back"
+			"dpad_east"		"key_press D, Move Right"
+			"dpad_west"		"key_press A, Move Left"
+			"click"		"key_press LEFT_SHIFT, Sprint"
+		}
+		"settings"
+		{
+			"requires_click"		"0"
+			"hold_repeat_inverval"		"99"
+			"edge_binding_radius"		"24995"
+			"analog_emulation_period"		"29"
+		}
+	}
+	"group"
+	{
+		"id"		"4"
+		"mode"		"trigger"
+		"bindings"
+		{
+			"edge"		"mouse_button RIGHT"
+		}
+		"settings"
+		{
+			"hold_repeat_inverval"		"99"
+			"haptic_intensity"		"1"
+		}
+	}
+	"group"
+	{
+		"id"		"5"
+		"mode"		"trigger"
+		"bindings"
+		{
+			"edge"		"mouse_button LEFT"
+		}
+		"settings"
+		{
+			"hold_repeat_inverval"		"99"
+			"haptic_intensity"		"1"
+		}
+	}
+	"group"
+	{
+		"id"		"6"
+		"mode"		"scrollwheel"
+		"bindings"
+		{
+			"scroll_clockwise"		"mouse_wheel SCROLL_DOWN"
+			"scroll_counterclockwise"		"mouse_wheel SCROLL_UP"
+		}
+		"settings"
+		{
+			"scroll_angle"		"88"
+			"haptic_intensity"		"1"
+		}
+	}
+	"group"
+	{
+		"id"		"7"
+		"mode"		"absolute_mouse"
+		"bindings"
+		{
+			"click"		"mouse_button LEFT, Use"
+		}
+		"settings"
+		{
+			"sensitivity"		"188"
+			"trackball"		"0"
+			"doubetap_max_duration"		"321"
+		}
+	}
+	"preset"
+	{
+		"id"		"0"
+		"name"		""
+		"group_source_bindings"
+		{
+			"0"		"button_diamond active"
+			"1"		"left_trackpad inactive"
+			"6"		"left_trackpad inactive"
+			"7"		"left_trackpad active"
+			"2"		"right_trackpad active"
+			"3"		"joystick inactive"
+			"4"		"left_trigger active"
+			"5"		"right_trigger active"
+		}
+		"switch_bindings"
+		{
+			"bindings"
+			{
+				"button_escape"		"key_press ESCAPE, Menu"
+				"button_back_left"		"mouse_button MIDDLE, Show Objects"
+				"button_back_right"		"mouse_button MIDDLE, Show Objects"
+				"right_bumper"		"mouse_wheel SCROLL_DOWN, Open Inventory"
+				"left_bumper"		"mouse_wheel SCROLL_UP, Close Inventory"
+			}
+		}
+		"settings"
+		{
+		}
+	}
+	"localization"
+	{
+		"english"
+		{
+			"title"		"Keyboard (WASD) and Mouse"
+			"description"		"This template works great for the games on Steam that were designed with a keyboard and mouse in mind, without real gamepad support. The controller will drive the game's keyboard based events with buttons, but will make assumptions about which buttons move you around (WASD for movement, space for jump, etc.). The right pad will emulate the movement of a mouse."
+		}
+	}
+}

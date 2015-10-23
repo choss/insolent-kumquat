@@ -1,0 +1,185 @@
+
+Package org.insanedevelopment.valve.parser.keyvalues; // Root Java package for generated files.
+
+Helpers
+
+/* These are character sets and regular expressions used in the definition of tokens. */
+   
+    all = [0 .. 0xFFFF];  
+    lowercase = ['a' .. 'z'];
+    uppercase = ['A' .. 'Z'];
+    digit = ['0' .. '9'];
+    tab = 9;
+    cr = 13;
+    lf = 10;
+    eol = cr lf | cr | lf;        // This takes care of different platforms
+
+    not_cr_lf = [all - [cr + lf]];
+    not_star = [all - '*'];
+    not_star_slash = [not_star - '/'];
+
+    blank = (' ' | tab | eol)+;
+
+    short_comment = '//' not_cr_lf* eol;
+    long_comment = '/*' not_star* '*'+ (not_star_slash not_star* '*'+)* '/';
+    comment = short_comment | long_comment;
+
+    letter = lowercase | uppercase | '_' | '$'; 
+    
+    input_character = all;
+    escape_sequence = '\b' | '\t' | '\n' | '\f' | '\r' | '\"' | '\' ''' | '\\';
+    string_character = [input_character - ['"' + '\']] | escape_sequence;
+    
+Tokens
+
+/* These are token definitions. It is allowed to use helper regular *
+ * expressions in the body of a token definition.                   *
+ * On a given input, the longest valid definition is chosen, In     *
+ * case of a match, the definition that appears first is chosen.    *
+ * Example: on input -> 's' <- "char" will have precedence on       *
+ * "string", because it appears first.                              */
+
+    l_brace =  '{';
+    r_brace =  '}';
+    quote = '"';
+	hash = '#'
+	
+    string = ''' [not_cr_lf - ''']+ ''';
+
+    blank = blank;
+    comment = comment;
+
+Ignored Tokens 
+
+/* These tokens are simply ignored by the parser. */
+
+    blank,
+    comment;
+
+Productions
+
+/* These are the productions of the grammar. The first production is *
+ * used by the implicit start production:                            *
+ *   start = (first production) EOF;                                 *
+ * ?, * and + have the same meaning as in a regular expression.      *
+ * In case a token and a production share the same name, the use of  *
+ * P. (for production) or T. (for token) is required.                *
+ * Each alternative can be explicitely named by preceding it with a  *
+ * name enclosed in braces.                                          *
+ * Each alternative element can be explicitely named by preceding it *
+ * with a name enclosed in brackets and followed by a colon.         */
+
+
+    grammar =
+        P.package? P.helpers? P.states? P.tokens? ign_tokens? P.productions?;
+
+    package = 
+        T.package pkg_name;
+        
+    pkg_name =
+        pkg_id [pkg_ids]:pkg_name_tail* semicolon;
+
+    pkg_name_tail =
+        dot pkg_id;
+
+    helpers =
+        T.helpers [helper_defs]:helper_def+;
+
+    helper_def =
+        id equal reg_exp semicolon;
+
+    states =
+        T.states id_list semicolon;
+
+    id_list = 
+        id [ids]:id_list_tail*;
+
+    id_list_tail =
+        comma id;
+
+    tokens =
+        T.tokens [token_defs]:token_def+;
+
+    token_def =
+        state_list? id equal reg_exp look_ahead? semicolon;
+
+    state_list =
+        l_brace id transition? [state_lists]:state_list_tail* r_brace;
+
+    state_list_tail =
+        comma id transition?;
+
+    transition =
+        arrow id;
+
+    ign_tokens =
+        ignored T.tokens id_list? semicolon;
+
+    look_ahead =
+        slash reg_exp;
+
+    reg_exp =
+        concat [concats]:reg_exp_tail*;
+
+    reg_exp_tail =
+        bar concat;
+
+    concat =
+        [un_exps]:un_exp*;
+
+    un_exp =
+        basic un_op?;
+
+    basic =
+        {char}    P.char |
+        {set}     set |
+        {string}  string |
+        {id}      id |
+        {reg_exp} l_par reg_exp r_par;
+
+    char = 
+        {char} T.char | 
+        {dec}  dec_char |
+        {hex}  hex_char;
+
+    set =
+        {operation} l_bkt [left]:basic  bin_op [right]:basic  r_bkt |
+        {interval}  l_bkt [left]:P.char d_dot  [right]:P.char r_bkt;
+
+    un_op = 
+        {star}   star |
+        {q_mark} q_mark |
+        {plus}   plus;
+
+    bin_op =
+        {plus}  plus |
+        {minus} minus;
+
+    productions =
+        T.productions [prods]:prod+;
+
+    prod =
+        id equal alts semicolon;
+
+    alts =
+        alt [alts]:alts_tail*;
+
+    alts_tail =
+        bar alt;
+
+    alt =
+        {parsed} alt_name? [elems]:elem* |
+        {ignored} l_par alt_name? [elems]:elem* r_par;
+        
+    alt_name =
+        l_brace id r_brace;
+
+    elem =
+        elem_name? specifier? id un_op?;
+
+    elem_name =
+        l_bkt id r_bkt colon;
+
+    specifier =
+        {token}         token_specifier dot |
+        {production} production_specifier dot;
