@@ -1,15 +1,14 @@
 language: java
-
 #not setting jdk, because we are using before_install to set it in the gradle file -> multi version gradle build
-#jdk:
-#  - oraclejdk8
+jdk:
+  - oraclejdk8
+script:
+  - ./gradlew assemble --info --stacktrace
 before_install:
   - echo java8_executable=\"/usr/lib/jvm/java-8-oracle/bin/javac\" >> gradle.properties
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
-script:
-  - "./gradlew assemble --info --stacktrace"
- cache:
+cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
