@@ -22,7 +22,7 @@ Helpers
 
     short_comment = '//' not_cr_lf* eol;
     long_comment = '/*' not_star* '*'+ (not_star_slash not_star* '*'+)* '/';
-    comment = short_comment | long_comment;xt
+    comment = short_comment | long_comment;
 
     letter = lowercase | uppercase | '_' | '$'; 
     
