@@ -5,7 +5,7 @@ jdk:
 script:
   - ./gradlew assemble --info --stacktrace
 before_install:
-  - echo java8_executable=\"/usr/lib/jvm/java-8-oracle/bin/javac\" >> gradle.properties
+  - echo java8_executable=/usr/lib/jvm/java-8-oracle/bin/javac >> gradle.properties
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 cache:
