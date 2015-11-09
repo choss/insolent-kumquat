@@ -1,5 +1,6 @@
 language: java
-jdk:
-  - oraclejdk8
+#not setting jdk, because we are using before_install to set it in the gradle file -> multi version gradle build
+#jdk:
+#  - oraclejdk8
 before_install:
   - echo java8_executable=\"/usr/lib/jvm/java-8-oracle/bin/javac\" >> gradle.properties

@@ -42,7 +42,7 @@ Tokens
     l_brace =  '{';
     r_brace =  '}';
     quote = '"';
-	hash = '#'
+	hash = '#';
 	
     string = ''' [not_cr_lf - ''']+ ''';
 
@@ -69,7 +69,9 @@ Productions
  * Each alternative element can be explicitely named by preceding it *
  * with a name enclosed in brackets and followed by a colon.         */
 
-
+ file = l_brace;
+ 
+/*
     grammar =
         P.package? P.helpers? P.states? P.tokens? ign_tokens? P.productions?;
 
@@ -183,3 +185,4 @@ Productions
     specifier =
         {token}         token_specifier dot |
         {production} production_specifier dot;
+*/
