@@ -29,9 +29,6 @@ subprojects {
 	    // Use 'jcenter' for resolving your dependencies.
 	    // You can declare any Maven/Ivy/file repository here.
 	    mavenLocal()
-	    maven {
-	       url "http://nexus.360t.com:8081/nexus/content/groups/public"
-	    }
 	    jcenter()
 	    maven {
 	       url "http://dhager.github.com/mvn-repo/releases"
